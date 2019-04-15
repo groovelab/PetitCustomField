@@ -47,7 +47,7 @@ class PetitCustomFieldHelper extends AppHelper
 	public $publicFieldConfigData = array();
 
 	/**
-	 * カスタムフィールド設定データ
+	 * カスタムフィールド項目
 	 * 
 	 * @var array
 	 */
@@ -223,6 +223,10 @@ class PetitCustomFieldHelper extends AppHelper
 							$data = $fieldValue;
 							break;
 
+						case 'upload':
+							$data = $fieldValue;
+							break;
+
 						default:
 							$data = $fieldValue;
 							break;
@@ -390,7 +394,11 @@ class PetitCustomFieldHelper extends AppHelper
 					));
 					$formOption	 = Hash::merge($formOption, $_formOption);
 					break;
-
+				case 'upload':
+					$_formOption['type'] = 'hidden';
+					$_formOption['class'] = 'upload-file-path';
+					$formOption	 = Hash::merge($formOption, $_formOption);
+					break;
 				default:
 					$formOption = Hash::merge($formOption, $_formOption);
 					break;

@@ -77,14 +77,14 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 	 */
 	public function blogBlogPostBeforeFind(CakeEvent $event)
 	{
-		if (BcUtil::isAdminSystem()) {
-			return $event->data;
-		}
+		// if (BcUtil::isAdminSystem()) {
+		// 	return $event->data;
+		// }
 
 		$Model = $event->subject();
 		// 最近の投稿、ブログ記事前後移動を find する際に実行
 		// TODO get_recent_entries に呼ばれる find 判定に、より良い方法があったら改修する
-		if (count($event->data[0]['fields']) === 2) {
+		if (is_array($event->data[0]['fields']) && count($event->data[0]['fields']) === 2) {
 			if (($event->data[0]['fields'][0] == 'no') && ($event->data[0]['fields'][1] == 'name')) {
 				$event->data[0]['fields'][]	 = 'id';
 				$event->data[0]['fields'][]	 = 'posts_date';
@@ -119,7 +119,7 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 					break;
 
 				case 'admin_edit':
-					$data = $this->PetitCustomFieldModel->getSection($Model->id, $this->PetitCustomFieldModel->name);
+					$data = $this->PetitCustomFieldModel->getSection($params['pass'][1], $this->PetitCustomFieldModel->name);
 					if ($data) {
 						$event->data[0][0][$this->PetitCustomFieldModel->name] = $data;
 					}
@@ -148,7 +148,7 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 
 		foreach ($event->data[0] as $key => $value) {
 			// 記事のカスタムフィールドデータを取得
-			if (empty($value['BlogPost'])) {
+			if (empty($value['BlogPost']) || !isset($value['BlogPost']['id'])) {
 				continue;
 			}
 
@@ -279,7 +279,7 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 
 			// 必須項目のバリデーションルールを設定する
 			if (!empty($fieldConfig['PetitCustomFieldConfigField']['required'])) {
-				$fieldRule				 = Hash::merge($fieldRule, $this->_getValidationRule('notEmpty'));
+				$fieldRule				 = Hash::merge($fieldRule, $this->_getValidationRule('notBlank'));
 				$validation[$fieldName]	 = $fieldRule;
 			}
 
@@ -338,7 +338,7 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 					case 'multiple':
 						foreach ($fieldConfig['PetitCustomFieldConfigField']['validate'] as $key => $rule) {
 							if ($rule == 'NONCHECK_CHECK') {
-								$fieldRule				 = Hash::merge($fieldRule, $this->_getValidationRule('notEmpty', array('not_empty' => 'multiple', 'not_empty_message' => '必ず1つ以上選択してください。')
+								$fieldRule				 = Hash::merge($fieldRule, $this->_getValidationRule('notBlank', array('not_empty' => 'multiple', 'not_empty_message' => '必ず1つ以上選択してください。')
 								));
 								$validation[$fieldName]	 = $fieldRule;
 							}
@@ -366,15 +366,15 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 	{
 		$_options	 = array(
 			'number'				 => '',
-			'not_empty'				 => 'notEmpty',
+			'not_empty'				 => 'notBlank',
 			'not_empty_message'		 => '必須項目です。',
 			'validate_regex_message' => '入力エラーが発生しました。',
 		);
 		$options	 = array_merge($_options, $options);
 
 		$validation = array(
-			'notEmpty'		 => array(
-				'notEmpty' => array(
+			'notBlank'		 => array(
+				'notBlank' => array(
 					'rule'		 => array($options['not_empty']),
 					'message'	 => $options['not_empty_message'],
 					'required'	 => true,

@@ -8,7 +8,12 @@
  * @package			PetitCustomField
  * @license			MIT
  */
-class PetitCustomFieldAppController extends BcPluginAppController
+
+ /**
+* Include files
+*/
+
+class PetitCustomFieldAppController extends AppController
 {
 
 	/**
@@ -68,7 +73,10 @@ class PetitCustomFieldAppController extends BcPluginAppController
 		} else {
 			$BlogContentModel = ClassRegistry::init('Blog.BlogContent');
 		}
-		$this->blogContentDatas = $BlogContentModel->find('list', array('recursive' => -1));
+		//$this->blogContentDatas = $BlogContentModel->find('list', array('recursive' => -1));
+		//ブログIDではなくコンテンツ名が出るように修正
+		$this->blogContentDatas = $BlogContentModel->find('list', array('recursive' => 0,'fields' => array('BlogContent.id','Content.title')));
+
 		$this->set('customFieldConfig', Configure::read('petitCustomField'));
 	}
 

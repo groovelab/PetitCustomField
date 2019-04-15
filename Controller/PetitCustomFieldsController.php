@@ -34,7 +34,7 @@ class PetitCustomFieldsController extends PetitCustomFieldAppController
 	 */
 	public $crumbs = array(
 		array('name' => 'プラグイン管理', 'url' => array('plugin' => '', 'controller' => 'plugins', 'action' => 'index')),
-		array('name' => 'プチ・カスタムフィールド管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_fields', 'action' => 'index'))
+		array('name' => 'プチ・カスタムフィールド4+', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_fields', 'action' => 'index'))
 	);
 
 	/**
@@ -42,7 +42,7 @@ class PetitCustomFieldsController extends PetitCustomFieldAppController
 	 *
 	 * @var string
 	 */
-	public $adminTitle = 'プチ・カスタムフィールド';
+	public $adminTitle = 'プチ・カスタムフィールド4+';
 
 	/**
 	 * beforeFilter

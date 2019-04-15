@@ -34,7 +34,7 @@ class PetitCustomFieldConfigMetasController extends PetitCustomFieldAppControlle
 	 */
 	public $crumbs = array(
 		array('name' => 'プラグイン管理', 'url' => array('plugin' => '', 'controller' => 'plugins', 'action' => 'index')),
-		array('name' => 'プチ・カスタムフィールド設定管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index')),
+		array('name' => 'プチ・カスタムフィールド4+', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index')),
 	);
 
 	/**
@@ -42,7 +42,7 @@ class PetitCustomFieldConfigMetasController extends PetitCustomFieldAppControlle
 	 *
 	 * @var string
 	 */
-	public $adminTitle = 'フィールド設定';
+	public $adminTitle = 'フィールド項目';
 
 	/**
 	 * beforeFilter
@@ -54,7 +54,7 @@ class PetitCustomFieldConfigMetasController extends PetitCustomFieldAppControlle
 	}
 
 	/**
-	 * [ADMIN] プチ・カスタムフィールド設定一覧
+	 * [ADMIN] プチ・カスタムフィールドグループ
 	 * 
 	 * @param int $configId
 	 */
@@ -63,7 +63,7 @@ class PetitCustomFieldConfigMetasController extends PetitCustomFieldAppControlle
 		$this->pageTitle = $this->adminTitle . '一覧';
 		$this->help		 = 'petit_custom_field_metas_index';
 
-		$this->crumbs[] = array('name' => 'フィールド設定管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_config_metas', 'action' => 'index', $configId));
+		$this->crumbs[] = array('name' => $this->adminTitle . '管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_config_metas', 'action' => 'index', $configId));
 
 		// フィールド一覧の最大件数を取得し、ページネーション件数に設定する
 		$max = $this->PetitCustomFieldConfigField->getMax('foreign_id');

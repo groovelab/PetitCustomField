@@ -18,12 +18,12 @@ $currentModelName = $this->request->params['models']['PetitCustomFieldConfigFiel
 </script>
 
 <h3>
-<?php $this->BcBaser->link($this->BcText->arrayValue($contentId, $blogContentDatas) .' ブログ設定編集はこちら', array(
+<?php $this->BcBaser->link('≫[' . trim($this->BcText->arrayValue($contentId, $blogContentDatas)) .'] ブログ設定', array(
 	'admin' => true, 'plugin' => 'blog', 'controller' => 'blog_contents',
 	'action' => 'edit', $contentId
 )) ?>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<?php $this->BcBaser->link('≫記事一覧こちら', array(
+<?php $this->BcBaser->link('≫['. trim($this->BcText->arrayValue($contentId, $blogContentDatas)) .'] 記事一覧', array(
 	'admin' => true, 'plugin' => 'blog', 'controller' => 'blog_posts',
 	'action' => 'index', $contentId
 )) ?>

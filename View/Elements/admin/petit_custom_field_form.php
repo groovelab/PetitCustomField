@@ -9,7 +9,18 @@
  */
 $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 ?>
-<?php if ($formPlace !== 'top'): ?></table><?php endif ?>
+
+<?php if ($formPlace === 'normal'): ?></table><?php endif ?>
+
+
+<?php //アップロード機能を含むオリジナルテンプレートを作る場合必須
+	$this->BcBaser->css('/uploader/css/uploader',false);
+	$this->BcBaser->css('/petit_custom_field/css/admin/petit_custom_field.css?t='.time(),false);
+	$this->BcBaser->js('/js/admin/vendors/jquery.upload-1.0.0.min',false);
+	$this->BcBaser->js('/petit_custom_field/js/admin/petit_custom_field.js?t='.time(),false);
+?>
+<div id="modalView"><div id="modalViewResult"></div></div>
+<?php // ここまで ?>
 
 <h3 id="textPetitCustomFieldTable">カスタム項目</h3>
 <?php if ($fieldConfigField): ?>
@@ -54,20 +65,29 @@ $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 					</th>
 					<td class="col-input">
 						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'prepend'))): ?>
-							<?php echo nl2br($valueFieldConfig['PetitCustomFieldConfigField']['prepend']) ?>
+							<?php echo '<div class="upload-before">'. nl2br($valueFieldConfig['PetitCustomFieldConfigField']['prepend']).'</div>' ?>
 						<?php endif ?>
 						
-						<?php echo $this->PetitCustomField->input("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}",
+						<?php /*echo $this->PetitCustomField->input("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}",
 							$this->PetitCustomField->getFormOption($valueFieldConfig, 'PetitCustomFieldConfigField')
-						) ?>
-						
+						) */?>
+		<span class="upload-file">
+			<?php echo $this->PetitCustomField->input("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}",
+							$this->PetitCustomField->getFormOption($valueFieldConfig, 'PetitCustomFieldConfigField'))?>
+            <?php //echo $this->BcForm->hidden("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}" ,["class" => "upload-file-path"]);?>
+            <input type="button" value="ファイルを選択" class="upload-file-open">
+            <span class="upload-file-delete"<?php if(empty($this->request->data['PetitCustomField'][$valueFieldConfig['PetitCustomFieldConfigField']['field_name']])):?> style="display:none"<?php endif;?>>× このファイルを使用しない</span>
+            <div class="upload-select-file"></div>
+		</span>
+
+
 						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'append'))): ?>
-							<?php echo nl2br($valueFieldConfig['PetitCustomFieldConfigField']['append']) ?>
+							<?php echo '<div class="upload-after">' . nl2br($valueFieldConfig['PetitCustomFieldConfigField']['append']).'</div>' ?>
 						<?php endif ?>
 						
 						<?php echo $this->BcForm->error("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}") ?>
 						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'description'))): ?>
-							<br /><small><?php echo nl2br($valueFieldConfig['PetitCustomFieldConfigField']['description']) ?></small>
+							<small><?php echo nl2br($valueFieldConfig['PetitCustomFieldConfigField']['description']) ?></small>
 						<?php endif ?>
 					</td>
 				</tr>
@@ -101,7 +121,7 @@ $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 		<?php endif ?>
 	
 	<?php endforeach ?>
-<?php if ($formPlace !== 'normal'): ?></table><?php endif ?>
+<?php if ($formPlace === 'top'): ?></table><?php endif ?>
 <?php else: ?>
 <ul>
 	<li>利用可能なフィールドがありません。不要な場合は

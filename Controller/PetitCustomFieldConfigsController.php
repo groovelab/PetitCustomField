@@ -34,7 +34,7 @@ class PetitCustomFieldConfigsController extends PetitCustomFieldAppController
 	 */
 	public $crumbs = array(
 		array('name' => 'プラグイン管理', 'url' => array('plugin' => '', 'controller' => 'plugins', 'action' => 'index')),
-		array('name' => 'プチ・カスタムフィールド設定管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index'))
+		array('name' => 'プチ・カスタムフィールド4+', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index'))
 	);
 
 	/**
@@ -42,7 +42,7 @@ class PetitCustomFieldConfigsController extends PetitCustomFieldAppController
 	 *
 	 * @var string
 	 */
-	public $adminTitle = 'プチ・カスタムフィールド設定';
+	public $adminTitle = 'フィールドグループ';
 
 	/**
 	 * beforeFilter
@@ -54,7 +54,7 @@ class PetitCustomFieldConfigsController extends PetitCustomFieldAppController
 	}
 
 	/**
-	 * [ADMIN] プチ・カスタムフィールド設定一覧
+	 * [ADMIN] プチ・カスタムフィールドグループ
 	 * 
 	 */
 	public function admin_index()
@@ -136,8 +136,8 @@ class PetitCustomFieldConfigsController extends PetitCustomFieldAppController
 	}
 
 	/**
-	 * 各ブログ別のプチ・カスタムフィールド設定データを作成する
-	 * - プチ・カスタムフィールド設定データがないブログ用のデータのみ作成する
+	 * 各ブログ別のプチ・カスタムフィールド項目を作成する
+	 * - プチ・カスタムフィールド項目がないブログ用のデータのみ作成する
 	 * 
 	 */
 	public function admin_first()

@@ -12,9 +12,9 @@
  * システムナビ
  */
 $config['BcApp.adminNavi.petit_custom_field'] = array(
-	'name'		 => 'プチ・カスタムフィールドプラグイン',
+	'name'		 => 'プチ・カスタムフィールド4+',
 	'contents'	 => array(
-		array('name'	 => '設定一覧',
+		array('name'	 => 'フィールドグループ',
 			'url'	 => array(
 				'admin'		 => true,
 				'plugin'	 => 'petit_custom_field',
@@ -46,7 +46,7 @@ $config['petitCustomField'] = array(
 		),
 		'コンテンツ'	 => array(
 			'wysiwyg' => 'Wysiwyg Editor',
-		//'upload' => 'FileUpload',
+			'upload' => 'FileUpload',
 		),
 	),
 	// エディターのタイプ
@@ -67,8 +67,9 @@ $config['petitCustomField'] = array(
 		'CONVERT_HANKAKU'	 => '半角変換',
 	),
 	'form_place'		 => array(
-		'normal' => 'コンテンツ編集領域の下部',
-		'top'	 => 'コンテンツ編集領域の上部',
+		'editor_after'  => 'エディターの下',
+		'normal'        => 'コンテンツ編集領域の下部',
+		'top'	        => 'コンテンツ編集領域の上部',
 	),
 	// 必須選択
 	'required'			 => array(

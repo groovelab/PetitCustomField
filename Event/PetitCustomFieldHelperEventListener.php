@@ -20,6 +20,7 @@ class PetitCustomFieldHelperEventListener extends BcHelperEventListener
 		'Form.afterCreate',
 		'Form.afterForm',
 		'Form.afterEnd',
+		'Form.afterInput',
 	);
 
 	/**
@@ -164,7 +165,7 @@ class PetitCustomFieldHelperEventListener extends BcHelperEventListener
 		// ブログ設定編集画面にプチ・カスタムフィールドメタ設定一覧リンクを表示する
 		if ($event->data['id'] == 'BlogContentAdminEditForm') {
 			$output				 = '<div id="PetitCustomFieldConfigBox">';
-			$output .= $View->BcBaser->getLink('≫プチ・カスタムフィールド設定', array(
+			$output .= $View->BcBaser->getLink('≫カスタム項目の設定', array(
 				'plugin'	 => 'petit_custom_field',
 				'controller' => 'petit_custom_field_config_metas',
 				'action'	 => 'index', $View->viewVars['blogContent']['PetitCustomFieldConfig']['id']
@@ -176,4 +177,13 @@ class PetitCustomFieldHelperEventListener extends BcHelperEventListener
 		return $event->data['out'];
 	}
 
+	public function formAfterInput(CakeEvent $event) {
+		$View = $event->subject();
+		if($event->data['formId'] == 'BlogPostForm' && $event->data['fieldName'] == 'BlogPost.detail') {
+			if($View->request->data['PetitCustomFieldConfig']['form_place'] === 'editor_after'){
+				$event->data['out'] = $event->data['out'].'</div>'.$View->element('PetitCustomField.petit_custom_field_form').'</table><div class="section">';
+				return $event->data['out'];
+			}
+		}
+    }
 }

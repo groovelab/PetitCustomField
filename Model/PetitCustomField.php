@@ -99,7 +99,7 @@ class PetitCustomField extends PetitCustomFieldAppModel
 	public $publicFieldConfigData = array();
 
 	/**
-	 * カスタムフィールド設定データ
+	 * カスタムフィールド項目
 	 * 
 	 * @var array
 	 */

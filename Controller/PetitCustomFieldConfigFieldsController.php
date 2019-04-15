@@ -8,7 +8,6 @@
  * @package			PetitCustomField
  * @license			MIT
  */
-App::uses('PetitCustomFieldApp', 'PetitCustomField.Controller');
 
 class PetitCustomFieldConfigFieldsController extends PetitCustomFieldAppController
 {
@@ -34,7 +33,7 @@ class PetitCustomFieldConfigFieldsController extends PetitCustomFieldAppControll
 	 */
 	public $crumbs = array(
 		array('name' => 'プラグイン管理', 'url' => array('plugin' => '', 'controller' => 'plugins', 'action' => 'index')),
-		array('name' => 'プチ・カスタムフィールド設定管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index')),
+		array('name' => 'プチ・カスタムフィールド4+', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index')),
 	);
 
 	/**
@@ -42,7 +41,7 @@ class PetitCustomFieldConfigFieldsController extends PetitCustomFieldAppControll
 	 *
 	 * @var string
 	 */
-	public $adminTitle = 'フィールド設定';
+	public $adminTitle = 'フィールド項目';
 
 	/**
 	 * beforeFilter
@@ -78,7 +77,7 @@ class PetitCustomFieldConfigFieldsController extends PetitCustomFieldAppControll
 			$this->redirect(array('action' => 'index'));
 		}
 
-		$this->crumbs[] = array('name' => 'フィールド設定管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_config_metas', 'action' => 'index', $configId));
+		$this->crumbs[] = array('name' => $this->adminTitle . '管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_config_metas', 'action' => 'index', $configId));
 
 		if (empty($this->request->data)) {
 			// $data = $this->PetitCustomFieldModel->getSection($Model->id, $this->PetitCustomFieldModel->name);
@@ -119,7 +118,7 @@ class PetitCustomFieldConfigFieldsController extends PetitCustomFieldAppControll
 		$this->help		 = 'petit_custom_field_config_fields';
 		$deletable		 = false;
 
-		$this->crumbs[]	 = array('name' => 'カスタムフィールド設定管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_config_metas', 'action' => 'index', $configId));
+		$this->crumbs[]	 = array('name' => '項目管理', 'url' => array('plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_config_metas', 'action' => 'index', $configId));
 		$foreignId		 = $this->PetitCustomFieldConfigField->PetitCustomFieldConfigMeta->getMax('field_foreign_id') + 1;
 
 		if (!$configId) {

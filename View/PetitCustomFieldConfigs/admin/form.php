@@ -29,12 +29,12 @@ if (count($blogContentDatas) > 0) {
 
 <?php if($this->request->params['action'] != 'admin_add'): ?>
 <h2>
-<?php $this->BcBaser->link($blogContentDatas[$this->request->data['PetitCustomFieldConfig']['content_id']] .' ブログ設定編集はこちら', array(
+<?php $this->BcBaser->link('≫[' . trim($blogContentDatas[$this->request->data['PetitCustomFieldConfig']['content_id']]) .'] ブログ設定', array(
 	'admin' => true, 'plugin' => 'blog', 'controller' => 'blog_contents',
 	'action' => 'edit', $this->request->data['PetitCustomFieldConfig']['content_id']
 )) ?>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<?php $this->BcBaser->link('≫記事一覧こちら', array(
+<?php $this->BcBaser->link('≫[' . trim($blogContentDatas[$this->request->data['PetitCustomFieldConfig']['content_id']]) .'] 記事一覧', array(
 	'admin' => true, 'plugin' => 'blog', 'controller' => 'blog_posts',
 	'action' => 'index', $this->request->data['PetitCustomFieldConfig']['content_id']
 )) ?>

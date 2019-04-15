@@ -11,12 +11,12 @@
 <?php $this->BcBaser->element('pagination') ?>
 
 <h3>
-<?php $this->BcBaser->link($this->BcText->arrayValue($contentId, $blogContentDatas) .' ブログ設定編集はこちら', array(
+<?php $this->BcBaser->link('≫[' . trim($this->BcText->arrayValue($contentId, $blogContentDatas)) .'] ブログ設定', array(
 	'admin' => true, 'plugin' => 'blog', 'controller' => 'blog_contents',
 	'action' => 'edit', $contentId
 )) ?>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<?php $this->BcBaser->link('≫記事一覧こちら', array(
+<?php $this->BcBaser->link('≫[' . trim($this->BcText->arrayValue($contentId, $blogContentDatas)) .'] 記事一覧', array(
 	'admin' => true, 'plugin' => 'blog', 'controller' => 'blog_posts',
 	'action' => 'index', $contentId
 )) ?>
@@ -27,8 +27,9 @@
 		<tr>
 			<th class="list-tool">
 				<div>
-					<?php $this->BcBaser->link($this->BcBaser->getImg('admin/btn_add.png', array('width' => 69, 'height' => 18, 'alt' => '新規追加', 'class' => 'btn')),
-							array('controller' => 'petit_custom_field_config_fields', 'action' => 'add', $configId)) ?>
+					<?php $this->BcBaser->link($this->BcBaser->getImg('admin/btn_add.png', array('alt' => '新規項目追加', 'class' => 'btn'))."新規項目追加",
+							array('controller' => 'petit_custom_field_config_fields', 'action' => 'add', $configId),
+							array('style' => 'text-decoration:underline;')) ?>
 				</div>
 			</th>
 			<th><?php echo $this->Paginator->sort('position', array(

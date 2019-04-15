@@ -8,7 +8,7 @@
  * @package			PetitCustomField
  * @license			MIT
  */
-$title			 = 'プチ・カスタムフィールドプラグイン';
+$title			 = 'プチ・カスタムフィールド4+';
 $description	 = 'ブログ記事に入力欄を設定できます。';
 $author			 = 'arata';
 $url			 = 'http://www.materializing.net/';
