@@ -10,7 +10,7 @@ PetitCustomField プラグインは、ブログ記事に入力欄を追加でき
 
 ## Installation
 
-1. 圧縮ファイルを解凍後、BASERCMS/app/Plugin/PetitCustomField に配置します。
+1. 圧縮ファイルを解凍後、フォルダ名をPetitCustomField-master→PetitCustomFieldにリネーム後、BASERCMS/app/Plugin/PetitCustomField に配置します。
 2. 管理システムのプラグイン管理にアクセスし、表示されている PetitCustomField プラグイン をインストール（有効化）して下さい。
 3. プチ・カスタムフィールドグループ画面にアクセスし、利用するコンテンツ毎に有効化します。
 4. プチ・カスタムフィールドグループ画面の「新規追加」よりフィールドを追加します。
