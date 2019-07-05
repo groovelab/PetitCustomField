@@ -38,7 +38,7 @@ $class=' class="'.implode(' ', $classies).'"';
 	</td>
 	<td>
 		<?php if (!$this->PetitCustomField->hasCustomField($data)): ?>
-			<?php $this->BcBaser->link($this->BcBaser->getImg('admin/btn_add.png', array('width' => 18, 'height' => 18, 'alt' => '新規項目', 'class' => 'btn')).'新規項目',
+			<?php $this->BcBaser->link($this->BcBaser->getImg('/petit_custom_field/img/admin/btn_add.png', array('width' => 18, 'height' => 18, 'alt' => '新規項目', 'class' => 'btn')).'新規項目',
 			array('controller' => 'petit_custom_field_config_fields', 'action' => 'add', $data['PetitCustomFieldConfig']['id'])) ?>
 		<?php else: ?>
 			<?php echo count($data['PetitCustomFieldConfigMeta']) ?>
