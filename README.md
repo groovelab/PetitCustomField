@@ -1,7 +1,7 @@
 # プチ・カスタムフィールド4+ プラグイン
 
-PetitCustomField プラグインは、ブログ記事に入力欄を追加できるbaserCMS専用のプラグインです。  
-※本家3系のプラグインを4系対応したものになります。
+PetitCustomField4+ プラグインは、ブログ記事に入力欄を追加できるbaserCMS専用のプラグインです。  
+※本家3系のプラグインを4系に対応したものになります。
 
 * グループ設定管理: 利用するカスタムフィールドをコンテンツ毎（ブログ毎）に管理できます。
 * 項目管理: コンテンツ毎のカスタムフィールドの並び順、所属コンテンツの編集ができます。
@@ -10,7 +10,7 @@ PetitCustomField プラグインは、ブログ記事に入力欄を追加でき
 
 ## Installation
 
-1. 圧縮ファイルを解凍後、フォルダ名をPetitCustomField-master→PetitCustomFieldにリネーム後、BASERCMS/app/Plugin/PetitCustomField に配置します。
+1. 圧縮ファイルを解凍後、フォルダ名をPetitCustomField～【-masterやバージョン名】→**PetitCustomField**にリネーム後、【BASERCMS】/app/Plugin/PetitCustomField として配置します。
 2. 管理システムのプラグイン管理にアクセスし、表示されている PetitCustomField プラグイン をインストール（有効化）して下さい。
 3. プチ・カスタムフィールドグループ画面にアクセスし、利用するコンテンツ毎に有効化します。
 4. プチ・カスタムフィールドグループ画面の「新規追加」よりフィールドを追加します。
