@@ -179,10 +179,21 @@ class PetitCustomFieldHelperEventListener extends BcHelperEventListener
 
 	public function formAfterInput(CakeEvent $event) {
 		$View = $event->subject();
-		if($event->data['formId'] == 'BlogPostForm' && $event->data['fieldName'] == 'BlogPost.detail') {
-			if($View->request->data['PetitCustomFieldConfig']['form_place'] === 'editor_after'){
-				$event->data['out'] = $event->data['out'].'</div>'.$View->element('PetitCustomField.petit_custom_field_form').'</table><div class="section">';
-				return $event->data['out'];
+		$adminTheme = Configure::read('petitCustomField.isNewThemeAdmin');
+		if($adminTheme){
+			if($event->data['formId'] == 'BlogPostForm' && $event->data['fieldName'] == 'BlogPost.detail_tmp') {
+				if($View->request->data['PetitCustomFieldConfig']['form_place'] === 'editor_after'){
+					//新仕様だとエディタのhiddenと分断して挿入されてしまうので気持ち悪いけど、動作は問題なさそうなのでこのまま。
+					$event->data['out'] = $event->data['out'].'</section><section class="bca-section">'.$View->element('PetitCustomField.petit_custom_field_form').'</table></section><section class="bca-section">';
+					return $event->data['out'];
+				}
+			}
+		}else{
+			if($event->data['formId'] == 'BlogPostForm' && $event->data['fieldName'] == 'BlogPost.detail') {
+				if($View->request->data['PetitCustomFieldConfig']['form_place'] === 'editor_after'){
+					$event->data['out'] = $event->data['out'].'</div>'.$View->element('PetitCustomField.petit_custom_field_form').'</table><div class="section">';
+					return $event->data['out'];
+				}
 			}
 		}
     }

@@ -108,7 +108,7 @@ class PetitCustomFieldConfigFieldsController extends PetitCustomFieldAppControll
 	}
 
 	/**
-	 * [ADMIN] 編集
+	 * [ADMIN] 追加
 	 * 
 	 * @param int $configId
 	 */

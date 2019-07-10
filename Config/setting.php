@@ -12,7 +12,7 @@
  * システムナビ
  */
 $config['BcApp.adminNavi.petit_custom_field'] = array(
-	'name'		 => 'プチ・カスタムフィールド4+',
+	'name'		 => 'pcf4+',
 	'contents'	 => array(
 		array('name'	 => 'フィールドグループ',
 			'url'	 => array(
@@ -23,6 +23,21 @@ $config['BcApp.adminNavi.petit_custom_field'] = array(
 		)
 	)
 );
+
+/**
+ * システムナビ 新管理画面用
+ */
+$config['BcApp.adminNavigation'] = [
+	'Contents' => [
+		'PetitCustomFieldConfigs' => [
+			'title' => 'pcf4+',
+			'type' => 'customfield',
+			'icon' => 'bca-icon--setting',
+			'url' => ['admin' => true, 'plugin' => 'petit_custom_field', 'controller' => 'petit_custom_field_configs', 'action' => 'index']
+		],
+	],
+];
+
 
 /**
  * プチ・カスタムフィールド用設定
@@ -76,4 +91,6 @@ $config['petitCustomField'] = array(
 		0	 => '必須としない',
 		1	 => '必須とする',
 	),
+	// $siteConfig['admin_theme']がadmin-thirdに設定されると自動でtrueになる。新仕様で別のadminテーマを使いたい場合は、ここでtrueを設定する
+	'isNewThemeAdmin' => false
 );

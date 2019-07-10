@@ -77,7 +77,7 @@ class PetitCustomFieldConfig extends PetitCustomFieldAppModel
 		$data = array(
 			'PetitCustomFieldConfig' => array(
 				'status'	 => false,
-				'form_place' => 'normal',
+				'form_place' => 'editor_after',
 			)
 		);
 		return $data;

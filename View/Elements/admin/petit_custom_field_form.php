@@ -24,7 +24,7 @@ $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 
 <h3 id="textPetitCustomFieldTable">カスタム項目</h3>
 <?php if ($fieldConfigField): ?>
-<table cellpadding="0" cellspacing="0" class="form-table section" id="PetitCustomFieldTable">
+<table cellpadding="0" cellspacing="0" class="form-table bca-form-table section" id="PetitCustomFieldTable">
 	<?php foreach ($fieldConfigField as $keyFieldConfig => $valueFieldConfig): ?>
 
 		<?php if ($this->PetitCustomField->judgeStatus($valueFieldConfig)): ?>
@@ -33,11 +33,11 @@ $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 				<tr>
 					<th colspan="2">
 						<?php echo $this->BcForm->label("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}", $valueFieldConfig['PetitCustomFieldConfigField']['name']) ?>
-						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'required'))): ?>&nbsp;<span class="required">*</span><?php endif ?>
+<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'required'))): ?>&nbsp;<?php if($customFieldConfig['isNewThemeAdmin']): ?><span class="required bca-label" data-bca-label-type="required">必須</span><?php else: ?><span class="required">*</span><?php endif ?><?php endif ?>
 					</th>
 				</tr>
 				<tr>
-					<td class="col-input" colspan="2">
+					<td class="col-input bca-form-table__input" colspan="2">
 						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'prepend'))): ?>
 							<?php echo nl2br($valueFieldConfig['PetitCustomFieldConfigField']['prepend']) ?>
 						<?php endif ?>
@@ -59,22 +59,18 @@ $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 			<?php elseif ($valueFieldConfig['PetitCustomFieldConfigField']['field_type'] == 'upload'): ?>
 				<?php // アップロードの場合 ?>
 				<tr>
-					<th class="col-head">
+					<th class="col-head bca-form-table__label">
 						<?php echo $this->BcForm->label("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}", $valueFieldConfig['PetitCustomFieldConfigField']['name']) ?>
-						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'required'))): ?>&nbsp;<span class="required">*</span><?php endif ?>
+						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'required'))): ?>&nbsp;<?php if($customFieldConfig['isNewThemeAdmin']): ?><span class="required bca-label" data-bca-label-type="required">必須</span><?php else: ?><span class="required">*</span><?php endif ?><?php endif ?>
 					</th>
-					<td class="col-input">
+					<td class="col-input bca-form-table__input">
 						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'prepend'))): ?>
 							<?php echo '<div class="upload-before">'. nl2br($valueFieldConfig['PetitCustomFieldConfigField']['prepend']).'</div>' ?>
 						<?php endif ?>
 						
-						<?php /*echo $this->PetitCustomField->input("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}",
-							$this->PetitCustomField->getFormOption($valueFieldConfig, 'PetitCustomFieldConfigField')
-						) */?>
 		<span class="upload-file">
 			<?php echo $this->PetitCustomField->input("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}",
 							$this->PetitCustomField->getFormOption($valueFieldConfig, 'PetitCustomFieldConfigField'))?>
-            <?php //echo $this->BcForm->hidden("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}" ,["class" => "upload-file-path"]);?>
             <input type="button" value="ファイルを選択" class="upload-file-open">
             <span class="upload-file-delete"<?php if(empty($this->request->data['PetitCustomField'][$valueFieldConfig['PetitCustomFieldConfigField']['field_name']])):?> style="display:none"<?php endif;?>>× このファイルを使用しない</span>
             <div class="upload-select-file"></div>
@@ -94,11 +90,11 @@ $formPlace = $this->request->data('PetitCustomFieldConfig.form_place');
 			<?php else: ?>
 				<?php // デフォルトのフィールド ?>
 				<tr>
-					<th class="col-head">
+					<th class="col-head bca-form-table__label">
 						<?php echo $this->BcForm->label("PetitCustomField.{$valueFieldConfig['PetitCustomFieldConfigField']['field_name']}", $valueFieldConfig['PetitCustomFieldConfigField']['name']) ?>
-						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'required'))): ?>&nbsp;<span class="required">*</span><?php endif ?>
+						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'required'))): ?>&nbsp;<?php if($customFieldConfig['isNewThemeAdmin']): ?><span class="required bca-label" data-bca-label-type="required">必須</span><?php else: ?><span class="required">*</span><?php endif ?><?php endif ?>
 					</th>
-					<td class="col-input">
+					<td class="col-input bca-form-table__input">
 						<?php if ($this->PetitCustomField->judgeShowFieldConfig($valueFieldConfig, array('field' => 'prepend'))): ?>
 							<?php echo nl2br($valueFieldConfig['PetitCustomFieldConfigField']['prepend']) ?>
 						<?php endif ?>

@@ -23,4 +23,4 @@ $(document).ready(function(){
 
 <div id="AjaxBatchUrl" style="display:none"><?php $this->BcBaser->url(array('controller' => 'petit_custom_field_config_fields', 'action' => 'ajax_batch')) ?></div>
 <div id="AlertMessage" class="message" style="display:none"></div>
-<div id="DataList"><?php $this->BcBaser->element('petit_custom_field_config_fields/index_list') ?></div>
+<div id="DataList" class="bca-data-list"><?php $this->BcBaser->element('petit_custom_field_config_fields/index_list') ?></div>

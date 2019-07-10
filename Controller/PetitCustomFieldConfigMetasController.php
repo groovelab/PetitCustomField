@@ -109,6 +109,7 @@ class PetitCustomFieldConfigMetasController extends PetitCustomFieldAppControlle
 	 */
 	public function admin_edit($id = null)
 	{
+		$this->pageTitle = $this->adminTitle . 'の変更';
 		if (!$id) {
 			$this->setMessage('無効な処理です。', true);
 			$this->redirect(array('action' => 'index'));

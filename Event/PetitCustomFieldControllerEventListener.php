@@ -67,6 +67,12 @@ class PetitCustomFieldControllerEventListener extends BcControllerEventListener
 		$Controller						 = $event->subject();
 		// PetitCustomFieldヘルパーの追加
 		$Controller->helpers[]			 = 'PetitCustomField.PetitCustomField';
+
+		//新管理画面テーマの対応
+		if(!Configure::read('petitCustomField.isNewThemeAdmin') && ( isset($Controller->siteConfigs['admin_theme']) && $Controller->siteConfigs['admin_theme'] === 'admin-third')){
+			Configure::write('petitCustomField.isNewThemeAdmin',true);
+		}
+
 		$this->settingsPetitCustomField	 = Configure::read('petitCustomField');
 	}
 
