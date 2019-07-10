@@ -168,7 +168,18 @@ class PetitCustomFieldConfigMetasController extends PetitCustomFieldAppControlle
 
 		$configData['PetitCustomFieldConfig'] = $this->request->data['PetitCustomFieldConfig'];
 		$this->set('configId', $configData['PetitCustomFieldConfig']['id']);
-		$this->set('blogContentDatas', $this->blogContentDatas);
+		// グループが作られていないブログは移動対象から除外する
+		$useBlog = $this->PetitCustomFieldConfigMeta->PetitCustomFieldConfig->find('list',['fields' => ['PetitCustomFieldConfig.id','PetitCustomFieldConfig.content_id']]);
+		$blogContentDatas = $this->blogContentDatas;
+		if ($useBlog) {
+			foreach ($blogContentDatas as $key => $data) {
+				$index = array_search($key,array_values($useBlog));
+				if($index === false){
+					unset($blogContentDatas[$key]);
+				}
+			}
+		}
+		$this->set('blogContentDatas', $blogContentDatas);
 		$this->render('form');
 	}
 
