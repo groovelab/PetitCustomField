@@ -119,19 +119,21 @@ class PetitCustomFieldModelEventListener extends BcModelEventListener
 					break;
 
 				case 'admin_edit':
-					$data = $this->PetitCustomFieldModel->getSection($params['pass'][1], $this->PetitCustomFieldModel->name);
-					if ($data) {
-						$event->data[0][0][$this->PetitCustomFieldModel->name] = $data;
+					if(isset($params['pass'][1])){
+						$data = $this->PetitCustomFieldModel->getSection($params['pass'][1], $this->PetitCustomFieldModel->name);
+						if ($data) {
+							$event->data[0][0][$this->PetitCustomFieldModel->name] = $data;
+						}
+						break;
 					}
-					break;
-
 				case 'admin_preview':
-					$data = $this->PetitCustomFieldModel->getSection($params['pass'][1], $this->PetitCustomFieldModel->name);
-					if ($data) {
-						$event->data[0][0][$this->PetitCustomFieldModel->name] = $data;
+					if(isset($params['pass'][1])){
+						$data = $this->PetitCustomFieldModel->getSection($params['pass'][1], $this->PetitCustomFieldModel->name);
+						if ($data) {
+							$event->data[0][0][$this->PetitCustomFieldModel->name] = $data;
+						}
+						break;
 					}
-					break;
-
 				case 'admin_ajax_copy':
 					break;
 
